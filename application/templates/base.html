@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="{% static 'assets/images/sat-logo.png' %}">
+    <!-- Page Title  -->
+    <title>Django Signals</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+
+  </head>
+
+<body class="nk-body ui-rounder has-sidebar" >
+
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar is-light nk-sidebar-fixed is-light " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-sidebar-brand">
+                        <a href="#" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="{% static 'assets/images/sat-logo.png' %}" srcset="{% static 'assets/images/sat-logo.png' %}" alt="logo">
+                            <img class="logo-dark logo-img" src="{% static 'assets/images/sat-logo.png' %}" srcset="{% static 'assets/images/sat-logo.png' %}" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="{% static 'assets/images/sat-logo.png' %}" srcset="{% static 'assets/images/sat-logo.png' %}" alt="logo-small">
+                        </a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element">
+              <div class="nk-sidebar-content">
+                <div class="nk-sidebar-menu" data-simplebar>
+                  <ul class="nk-menu">
+                    <li class="nk-menu-heading">
+                      <h6 class="overline-title text-primary-alt">Applications</h6>
+                    </li><!-- .nk-menu-heading -->
+                  </ul>
+                </div><!-- .nk-sidebar-menu -->
+              </div><!-- .nk-sidebar-content -->
+            </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header is-light nk-header-fixed is-light">
+                    <div class="container-xl wide-xl">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ms-n1 me-3">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="#" class="logo-link">
+                                    <img class="logo-light logo-img" src="{% static 'assets/images/sat-logo.png' %}" srcset="./images/sat-logo.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="{% static 'assets/images/sat-logo.png' %}" srcset="./images/sat-logo.png 2x" alt="logo-dark">
+                                </a>
+                            </div><!-- .nk-header-brand -->
+                            <div class="nk-header-menu is-light">
+                                <div class="nk-header-menu-inner">
+                                </div>
+                            </div><!-- .nk-header-menu -->
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" id="header_toggle" class="dropdown-toggle" data-bs-toggle="dropdown" id="avatar_dropdown_icon" onclick="headerEnabled(true)">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end" id="avatar_dropdown">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span>{{request.user.first_name.0 | upper }}{{request.user.last_name.0 | upper }}</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">{{request.user.first_name}} {{request.user.last_name}}</span>
+                                                        <!-- <span class="lead-text">{{request.user.username}}</span> -->
+                                                        <span class="sub-text">{{ request.user.email }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="#" id="sign_out"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!-- .nk-header-tools -->
+                        </div><!-- .nk-header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header @e -->
+                <!-- content @s -->
+                {% block content %}
+                {% endblock content %}
+                <!-- content @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+   
+ 
+    <script src="{% static 'assets/js/example-sweetalert.js' %}"></script>  
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    
+    <script src="{% static 'assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="{% static 'assets/js/libs/datatable-btns.js' %}"></script>
+    <script src="{% static 'assets/js/charts/gd-default.js' %}"></script>
+
+    <!-- JavaScript -->
+    <script src="{% static 'assets/js/charts/gd-campaign.js' %}"></script>
+    <script src="{% static 'assets/js/charts/gd-analytics.js' %}"></script>
+
+    {% block script %}
+    {% endblock script %}
+</body>
+</html>

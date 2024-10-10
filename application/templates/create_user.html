@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="nk-content nk-content-fluid">
+  <div class="container-xl wide-xl">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h6 class="nk-block-title page-title">Form</h6>
+            <div class="nk-block-des text-soft">
+              {% if messages %}
+                  {% for message in messages %}   
+                      <div class="example-alert">
+                          <div class="alert alert-{{ message.tags}} alert-dismissible alert-icon">
+                            <strong>{{message}}</strong><button class="close" data-bs-dismiss="alert"></button>
+                          </div>
+                      </div>
+                  {% endfor %}   
+              {% endif %}
+            </div>
+          </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+      </div><!-- .nk-block-head -->
+      <form action="{% url 'create_new_user' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+          <div class="nk-block">
+            <div class="row g-gs">
+              <div class="col-lg-12">
+                <div class="card card-bordered card-preview">
+                  <div class="card-inner">
+                    <div class="preview-block">
+                      <div class="row gy-4">
+                        <span class="preview-title-lg overline-title">Personal Info</span>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label class="form-label" for="username">Username:</label>
+                            <span style="color:red;">*</span>
+                            <div class="form-control-wrap">
+                              <input type="text" class="form-control field" id="username" name="username"  placeholder="Enter your username" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label class="form-label" for="password">Password:</label>
+                            <span style="color:red;">*</span>
+                            <div class="form-control-wrap">
+                              <input type="text" class="form-control field" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                          </div>
+                        </div>
+
+                      <div class="row mt-3">
+                        <div class="col-sm-3">
+                          <button class="btn btn-lg-block btn-primary"  id="submit" name= "action" value="submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+      </div>
+    </div>
+    </div>
+  </div><!-- content @e-->
+  <!-- wrap @e -->
+</div>
+{% endblock content %}
+
