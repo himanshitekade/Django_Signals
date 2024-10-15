@@ -10,7 +10,13 @@ import logging
 '''The default behavior of Django signals is that they are executed synchronously. 
 This means that when a signal is sent, the corresponding signal receiver function 
 is executed immediately, and the code execution will pause until the receiver 
-has completed its execution before proceeding to the next line of code.'''
+has completed its execution before proceeding to the next line of code.
+
+Importance in real-world applications:
+Synchronous signals can block the main thread, especially if they involve 
+long-running tasks like sending emails or processing heavy data. This can lead to 
+delays in the response time for users. In such cases, offloading these tasks to 
+an asynchronous task queue (like Celery) would improve performance.'''
 
 
 # Set up logging
@@ -33,7 +39,14 @@ def log_user_creation(sender, instance, created, **kwargs):
 #QUESTION 2 ANSWER: Same thread behavior
 '''Yes, by default, Django signals run in the same thread as the caller. 
 This means that if the thread that triggered the signal is the main thread, 
-the signal receiver will also execute in the same thread.'''
+the signal receiver will also execute in the same thread.
+
+Importance in real-world applications:
+Running in the same thread ensures that the signal receiver shares the same 
+resources (like memory and database connections) as the caller. While this is 
+efficient for short tasks, long-running tasks should be moved to separate threads 
+or async systems to avoid blocking the main thread.'''
+
 
 
 # Same thread behavior demonstration
@@ -48,7 +61,14 @@ def log_user_thread(sender, instance, created, **kwargs):
 #QUESTION 3 ANSWER : Database transaction behavior
 '''Yes, by default, Django signals run in the same database transaction as the caller. 
 If an exception is raised during the signal processing, it will roll back the entire 
-database transaction, including the changes made by the caller.'''
+database transaction, including the changes made by the caller.
+
+Importance in real-world applications:
+This behavior ensures data consistency. If something goes wrong in the signal handler, 
+the changes made in the main logic will not be saved to the database, preventing 
+partial or corrupt data from being committed. However, developers should be careful 
+about which exceptions are allowed to propagate, as some exceptions might rollback 
+transactions unnecessarily.'''
 
 
 # Database transaction behavior demonstration
